@@ -5,6 +5,12 @@ This project started off as a make-it-yourself project so combining different co
 
 A first display was build but due to the extensive work, a second version was based upon the adaptation of existing Stramatel displays.
 
+Note that in the code, you can find two files.  This is typical to PyCom
+- boot.py: All code required to boot the device (typical networking)
+- main.py: The actual code required to run the controller
+
+See a clock in action [mp4 movie](https://github.com/HenkUyttenhove/24-14-Score-board/blob/master/IMG/20171006_184051.mp4)
+
 # Do-it-yourself display (v1)
 
 It's possible to buy a ready-to-use display but it's more fun to build one yourself.  
@@ -33,7 +39,7 @@ For the do-it-yourself display, we go for option 2.  To solve the issue of limit
 
 > Note: that MicroPython has some serious limitations on networking like multicasting not supported.  (only UDP/TCP and LoRA)
 
- See  [Network diagram](https://github.com/HenkUyttenhove/24-14-Score-board/blob/master/Display/DisplayWires.png)
+ See  [Network diagram](https://github.com/HenkUyttenhove/24-14-Score-board/blob/master/IMG/DisplayWiresv1.jpg)
 
 The MCP23017 is connected to the PyCom via I2C
  SCL (pin12) - SCL (pin10)
