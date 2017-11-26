@@ -1,8 +1,11 @@
 # boot.py -- run on boot-up
-import os
-import machine
+# can run arbitrary Python, but best to keep it minimal
 
-uart = UART(0, 115200)
+import machine
+import os
+import time
+
+uart = machine.UART(0, 115200)
 os.dupterm(uart)
 
 from network import WLAN
@@ -12,8 +15,7 @@ if machine.reset_cause() != machine.SOFT_RESET:
     wlan.init(mode=WLAN.STA)
     wlan.antenna(1)
     # configuration below MUST match your home router settings!!
-    wlan.ifconfig(id=0,config='dhcp')
-    print("WLAN details:",wlan.ifconfig())
+    wlan.ifconfig(config=('172.16.1.200', '255.255.255.0', '0.0.0.0', '0.0.0.0'))
 
 if not wlan.isconnected():
     # change the line below to match your network ssid, security and password
