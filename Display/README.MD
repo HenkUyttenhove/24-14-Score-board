@@ -3,7 +3,7 @@
 # Introduction
 This project started off as a make-it-yourself project so combining different components into a physical display.
 
-A first display was build but due to the extensive work, a second version was based upon the adaptation of existing Stramatel displays.
+A first display was built but due to the extensive work, a second version was based upon the adaptation of existing Stramatel displays.
 
 Note that in the code, you can find two files.  This is typical to PyCom
 - boot.py: All code required to boot the device (typical networking)
@@ -72,3 +72,14 @@ The MCP23017 is connected to the PyCom via I2C
  Example: Pycom puts code of Display A on 7 LED segments and activates cathode of display A.  After deactivation of cathode display A, Pycom puts code of Display B on 7 LED segments and activates cathode of display B.  This is done in a alternating way.
 
  See [Network diagram](https://github.com/HenkUyttenhove/24-14-Score-board/blob/master/IMG/schemeStramatel.jpg)
+
+## Software coding
+Note that for the coding, the self-made project is using code based upon a clock.  It reads the actual time and calculate the difference between start and actual to define the past time.
+
+For the Stramatel project, another concept was used.  The Pycom supports two interesting libraries.  The first is a Chrono and the second is a Watchdog process.  The Chrono allows a major simplification of the code due to no recalculation of time.
+The Watchdog library allows an automatic reboot if the process breaks.  This can happen when the controller can't reach the displays using UDP.  The controller will crash due to the limited memory of the Pycom for caching network traffic.
+
+### Remark concerning the WiFi set-up
+Due to the limited memory of the Pycom, a failing connection from the controller to the displays will crash the Pycom. With the Watchdog process, the controller will reboot and retry the connection.
+However, due to the reboot of the controller, it's not advised to use the controller as the AP (Access Point).
+> Note: When the controller reboots and acts as AP, the displays will also need to resync with the AP.  When the controller tries to connect before the display is synced, the controller will fail and reboot again. You are in a loop.  Solution, use external AP or configure a displays as AP.
