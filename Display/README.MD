@@ -83,3 +83,8 @@ The Watchdog library allows an automatic reboot if the process breaks.  This can
 Due to the limited memory of the Pycom, a failing connection from the controller to the displays will crash the Pycom. With the Watchdog process, the controller will reboot and retry the connection.
 However, due to the reboot of the controller, it's not advised to use the controller as the AP (Access Point).
 > Note: When the controller reboots and acts as AP, the displays will also need to resync with the AP.  When the controller tries to connect before the display is synced, the controller will fail and reboot again. You are in a loop.  Solution, use external AP or configure a displays as AP.
+
+# Modification of existing Stramatel display (v3)
+The problems with the WiFi are not acceptable during a match.  As a result, the decision is taken to swap the controller with another device.  The Raspberry Pi is a nice controller but not stable due to the SD.  After a tip, the choice is made to continue with Pycom but with the Lopy device.  This is a LoRa controller with WiFi and Bluetooth capabilities.  The main advantage however is that LoRa can also work without a gateway because it just broadcasts the information without the need for session control.  Perfect for the displays.
+Check the code v3 for the required updates.  Note that you can't use p5, p6 and p7 because that interferes with the LoRa chip.
+You can also disable the WiFi after activating LoRa.  This will improve the speed of booting.
