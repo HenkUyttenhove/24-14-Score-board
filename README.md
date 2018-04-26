@@ -1,6 +1,7 @@
 # 24-14-Score-board
 
 This project includes the code for creating a basketball shotclock based upon PYCOM devices.
+See v3 to resolve the socket and WiFi problem
 
 # How does it work
 ## The controller
@@ -40,3 +41,7 @@ The Legacy Stramatel system is build upon a 24v power switch connected to a Stra
 Every segment is build upon a parallel array of 7 red LED's with a resistance of 151 Ohm.  
 
 The current will be (24v - 7x 2v)/151 Ohm = 66 mA or 3x to much for the LED display.  This is done because both 7-segment LEDS are sharing the anode connections and are activated via the two cathodes.  As a result, we have to target 50Hz or 20 msec activation for none flickering presentation.  Because we have two displays, we can only activate a display for 10 msec.  Therefore, the current is 3x higher than normal operations due to the short puls.  However, I have seen that the displays are suffering (after 10 years) from different broken LED's so this is not advised.  Better to put a ~350 Ohm resistance in the ring so we get 500 Ohm or 20 mA of current. 
+
+# V3 Replacement of the WiPy with a LoPy so broadcast can be used
+The WiPy device has very limited memory and a buggy network socket.  As a result, you can't use network broadcasting.  Due to the limited memory, the WiPy crashes when there are to much undelivered packages.
+The solution is the LoPy device supporting LoRa.  This LoRa functionality is a broadcasting protocol so perfect for the clocks.  Note that an antenna is required for LoRa or the LoRa chip can get damaged. You can also disable WiFi after activation of LoRa. The code can be found in v3.
