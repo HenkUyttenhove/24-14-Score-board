@@ -36,9 +36,9 @@ Digit = [[1,1,1,1,1,0,1],\
 
 # Pin layout on the Pycom
 # Note that P0, P1, P5, P6, P7 can't be used with Lopy
-p1 = Pin('P2', mode=Pin.OUT)
-p2 = Pin('P3', mode=Pin.OUT)
-p3 = Pin('P4', mode=Pin.OUT)
+p1 = Pin('P3', mode=Pin.OUT)  # Note that P2 can not be used due to dual function for firmware overwrite
+p2 = Pin('P4', mode=Pin.OUT)
+p3 = Pin('P9', mode=Pin.OUT)
 p4 = Pin('P8', mode=Pin.OUT)
 p5 = Pin('P11', mode=Pin.OUT)
 p6 = Pin('P12', mode=Pin.OUT)
